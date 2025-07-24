@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎉 Chúc mừng sinh nhật tienntm8 🎉</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #ffe6f0, #ccffff);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #ff69b4;
+      margin-bottom: 2rem;
+      animation: fadeIn 2s ease;
+    }
+
+    .gift-box {
+      width: 150px;
+      height: 150px;
+      background-color: #ff6699;
+      border-radius: 20px;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .gift-box::before, .gift-box::after {
+      content: '';
+      position: absolute;
+      background-color: #fff;
+    }
+
+    .gift-box::before {
+      width: 100%;
+      height: 20px;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+
+    .gift-box::after {
+      width: 20px;
+      height: 100%;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .cake {
+      display: none;
+      font-size: 5rem;
+      margin-top: 20px;
+      animation: bounce 1s infinite alternate;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif');
+      background-size: cover;
+      opacity: 0.2;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-20px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="confetti"></div>
+  <h1>🎁 Chúc mừng sinh nhật tienntm8 🎉</h1>
+  <div class="gift-box" onclick="openGift()"></div>
+  <div class="cake" id="cake">🎂🕯️</div>
+
+  <script>
+    function openGift() {
+      const box = document.querySelector('.gift-box');
+      const cake = document.getElementById('cake');
+      box.style.transform = 'scale(0)';
+      setTimeout(() => {
+        cake.style.display = 'block';
+      }, 300);
+    }
+  </script>
+</body>
+</html>
