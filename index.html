@@ -1,108 +1,90 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🎉 Chúc mừng sinh nhật tienntm8 🎉</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chúc mừng sinh nhật</title>
   <style>
     body {
       margin: 0;
-      background: url('17199535-3b41-414c-bf14-c8ef80b41435.png') no-repeat center center fixed;
+      padding: 0;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-color: #fdf2f8;
       background-size: cover;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      background-position: center;
+      transition: background 1s ease-in-out;
       overflow: hidden;
-      position: relative;
     }
-
-    h1 {
-      font-size: 3rem;
-      color: #ffffff;
-      margin-bottom: 2rem;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-      animation: fadeIn 2s ease;
-    }
-
-    .gift-box {
-      width: 150px;
-      height: 150px;
-      background-color: #ff6699;
-      border-radius: 20px;
-      position: relative;
+    #cake {
+      margin-top: 50px;
+      width: 300px;
       cursor: pointer;
-      transition: transform 0.3s ease;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      transition: transform 0.3s;
+      z-index: 2;
+      position: relative;
     }
-
-    .gift-box::before, .gift-box::after {
-      content: '';
-      position: absolute;
-      background-color: #fff;
+    #cake:hover {
+      transform: scale(1.1);
     }
-
-    .gift-box::before {
-      width: 100%;
-      height: 20px;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-    }
-
-    .gift-box::after {
-      width: 20px;
-      height: 100%;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .cake {
+    #message {
       display: none;
-      font-size: 5rem;
+      font-size: 40px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
       margin-top: 20px;
-      animation: bounce 1s infinite alternate;
+      animation: pop 1s ease forwards;
+      z-index: 2;
+      position: relative;
     }
-
+    @keyframes pop {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
     .confetti {
       position: absolute;
-      width: 100%;
-      height: 100%;
-      background-image: url('https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif');
-      background-size: cover;
-      opacity: 0.2;
-      pointer-events: none;
-      z-index: -1;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      animation: fall 3s linear forwards;
+      opacity: 0.8;
     }
-
-    @keyframes bounce {
-      from { transform: translateY(0); }
-      to { transform: translateY(-20px); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
     }
   </style>
 </head>
 <body>
-  <div class="confetti"></div>
-  <h1>🎁 Chúc mừng sinh nhật tienntm8 🎉</h1>
-  <div class="gift-box" onclick="openGift()"></div>
-  <div class="cake" id="cake">🎂🕯️</div>
+  <h2>Bấm vào bánh kem để mở bất ngờ 🎂</h2>
+  <img id="cake" src="https://pngimg.com/uploads/cake/cake_PNG13113.png" alt="Bánh kem">
+  <div id="message">CHÚC MỪNG SINH NHẬT ANH ĐẸP TRAI, TRONGNV28 🎉</div>
 
   <script>
-    function openGift() {
-      const box = document.querySelector('.gift-box');
-      const cake = document.getElementById('cake');
-      box.style.transform = 'scale(0)';
-      setTimeout(() => {
-        cake.style.display = 'block';
-      }, 300);
+    const cake = document.getElementById('cake');
+    const message = document.getElementById('message');
+
+    cake.addEventListener('click', () => {
+      cake.style.display = 'none';
+      document.body.style.backgroundImage = "url('187444885_113200507601495_463119825086753294_n.jpg')";
+      message.style.display = 'block';
+      createConfetti();
+    });
+
+    function createConfetti() {
+      for (let i = 0; i < 150; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        document.body.appendChild(confetti);
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.top = '-10px';
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        confetti.style.animationDuration = 2 + Math.random() * 3 + 's';
+        confetti.style.animationDelay = Math.random() * 1 + 's';
+        confetti.style.width = confetti.style.height = Math.random() * 8 + 5 + 'px';
+        setTimeout(() => confetti.remove(), 5000);
+      }
     }
   </script>
 </body>
